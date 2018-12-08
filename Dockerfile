@@ -1,10 +1,10 @@
 FROM debian:jessie-slim
 COPY ./docker-entrypoint.sh /usr/local/bin/
-
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 RUN apt-get update
 RUN apt-get install -y make flex g++ libmysqlclient-dev libmysql++-dev php5-fpm php5-mysql php5-gd nginx
 RUN apt-get install -y mysql-client
-RUN apt-get install -y python2.7 python3
+RUN apt-get install -y python2.7 python3 oracle-java8-installer
 # code
 RUN /usr/sbin/useradd -m -u 1536 judge
 # clear
