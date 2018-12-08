@@ -4,10 +4,8 @@ chmod +x install.sh
 ./install.sh
 service mysql start
 /etc/init.d/judged start
-php5-fpm
+php7.2-fpm
 service nginx start
 
-/bin/bash  
-exit 0 
-
-
+/bin/bash
+exit 0
