@@ -1,5 +1,6 @@
 FROM debian:jessie-slim
 COPY ./docker-entrypoint.sh /usr/local/bin/
+COPY ./sources.debian.list  /etc/apt/sources.list
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 RUN apt-get update
 RUN apt-get install -y make flex g++ libmysqlclient-dev libmysql++-dev php5-fpm php5-mysql php5-gd nginx
