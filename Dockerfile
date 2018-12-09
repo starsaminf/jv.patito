@@ -3,7 +3,7 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 COPY ./sources.debian.list  /etc/apt/sources.list
 
 RUN apt-get update
-RUN apt-get install -y build-essential make flex g++ libmysqlclient-dev libmysql++-dev php7.2-fpm php7.2-mysql php7.2-gd nginx
+RUN apt-get install -y build-essential make flex g++ default-libmysqlclient-dev  libmysql++-dev php7.2-fpm php7.2-mysql php7.2-gd nginx
 RUN apt-get install -y mysql-client
 RUN apt-get install -y python2.7 python3
 # Setup JAVA_HOME
