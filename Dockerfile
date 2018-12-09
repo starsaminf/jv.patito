@@ -2,18 +2,20 @@ FROM debian:jessie-slim
 COPY ./docker-entrypoint.sh /usr/local/bin/
 COPY ./sources.debian.list  /etc/apt/sources.list
 RUN apt-get update
-
-RUN apt-get -y install software-properties-common
-RUN add-apt-repository -y ppa:webupd8team/java
-RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
-Run echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
-RUN apt-get update
-RUN apt-get -y install oracle-java8-installer
-
-
 RUN apt-get install -y make flex g++ libmysqlclient-dev libmysql++-dev php5-fpm php5-mysql php5-gd nginx
 RUN apt-get install -y mysql-client
 RUN apt-get install -y python2.7 python3
+
+RUN set -ex && \
+    echo 'deb http://deb.debian.org/debian jessie-backports main' \
+      > /etc/apt/sources.list.d/jessie-backports.list && \
+
+    apt update -y && \
+    apt install -t \
+      jessie-backports \
+      openjdk-8-jre-headless \
+      ca-certificates-java -y
+
 # code
 RUN /usr/sbin/useradd -m -u 1536 judge
 # clear
