@@ -1,7 +1,16 @@
-deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib
-deb http://mirrors.aliyun.com/debian/ stretch-proposed-updates main non-free contrib
-deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib
-deb-src http://mirrors.aliyun.com/debian/ stretch-proposed-updates main non-free contrib
+#------------------------------------------------------------------------------#
+#                   OFFICIAL DEBIAN REPOS                    
+#------------------------------------------------------------------------------#
 
-deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main
-deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main
+###### Debian Main Repos
+deb http://deb.debian.org/debian/ stable main contrib non-free
+deb-src http://deb.debian.org/debian/ stable main contrib non-free
+
+deb http://deb.debian.org/debian/ stable-updates main contrib non-free
+deb-src http://deb.debian.org/debian/ stable-updates main contrib non-free
+
+deb http://deb.debian.org/debian-security stable/updates main
+deb-src http://deb.debian.org/debian-security stable/updates main
+
+deb http://ftp.debian.org/debian stretch-backports main
+deb-src http://ftp.debian.org/debian stretch-backports main
