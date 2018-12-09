@@ -1,10 +1,18 @@
 FROM debian:stretch-slim
 COPY ./docker-entrypoint.sh /usr/local/bin/
 COPY ./sources.debian.list  /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y build-essential make flex g++ libmysqlclient-dev libmysql++-dev php7.2-fpm php7.2-mysql php7.2-gd nginx
-RUN apt-get install -y mysql-client
-RUN apt-get install -y python2.7 python3
+
+RUN apt update
+RUN apt install -y ca-certificates apt-transport-https wget unzip
+RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+RUN echo "deb https://packages.sury.org/php/ stretch main" >> /etc/apt/sources.list.d/php.list
+RUN apt update
+
+RUN apt install -y build-essential make flex g++ default-libmysqlclient-dev  libmysql++-dev 
+RUN apt install -y php7.2 
+RUN apt install -y php7.2-fpm php7.2-mysql php7.2-gd nginx
+RUN apt install -y mysql-client
+RUN apt install -y python2.7 python3
 
 # Setup JAVA_HOME
 ENV JAVA_HOME="/usr/lib/jvm/default-jvm"
@@ -16,8 +24,6 @@ RUN JAVA_VERSION=8 && \
     JAVA_PATH=750e1c8617c5452694857ad95c3ee230 && \
     JAVA_SHA256_SUM=6d34ae147fc5564c07b913b467de1411c795e290356538f22502f28b76a323c2 && \
     JCE_SHA256_SUM=f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59 && \ 
-    apt-get update && \
-    apt-get -y install wget unzip && \
     cd "/tmp" && \
     wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/${JAVA_PATH}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
     echo "${JAVA_SHA256_SUM}" "jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" | sha256sum -c - && \
@@ -79,7 +85,6 @@ RUN JAVA_VERSION=8 && \
            "/usr/share/doc" \
            "/usr/share/doc-base" \
            "/usr/share/info/*"
-	   
 	   
 # code
 RUN /usr/sbin/useradd -m -u 1536 judge
