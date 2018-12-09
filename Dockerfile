@@ -9,8 +9,8 @@ RUN echo "deb https://packages.sury.org/php/ stretch main" >> /etc/apt/sources.l
 RUN apt update
 
 RUN apt install -y build-essential make flex g++ default-libmysqlclient-dev  libmysql++-dev 
-RUN apt install -y php7.2 
-RUN apt install -y php7.2-fpm php7.2-mysql php7.2-gd nginx
+RUN apt install -y php7.1 
+RUN apt install -y php7.1-fpm php7.1-mysql php7.1-gd nginx php7.1-mcrypt
 RUN apt install -y mysql-client
 RUN apt install -y python2.7 python3
 
