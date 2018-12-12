@@ -2,9 +2,9 @@
 cd /home/judge/src/core/
 chmod +x install.sh
 ./install.sh
-service mysql start
+#service mysql start
 /etc/init.d/judged start
-/etc/init.d/php7.2-fpm start
+/etc/init.d/php7.1-fpm start
 service nginx start
 
 /bin/bash
